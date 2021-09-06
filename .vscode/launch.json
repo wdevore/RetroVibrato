@@ -10,7 +10,7 @@
             "type": "dart"
         },
         {
-            "name": "RetroVibrato (profile mode)",
+            "name": "RetroVibrato (Debug mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug"
