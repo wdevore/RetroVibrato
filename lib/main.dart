@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'appbar_choice.dart';
-import 'appbar_button.dart';
+import 'package:retro_vibrato/view/choice_provider.dart';
+import 'package:retro_vibrato/view/appbar_row.dart';
 
 void main() {
   runApp(FSfxrApp());
@@ -16,7 +16,7 @@ class FSfxrApp extends StatelessWidget {
         // This is the theme of your application.
         primarySwatch: Colors.orange,
       ),
-      home: FSfxrHomePage(title: 'RetroVibrato'), // Bar title
+      home: FSfxrHomePage(title: 'RetroVibrato'),
     );
   }
 }
@@ -41,7 +41,7 @@ class FSfxrHomePage extends StatefulWidget {
 
 class _FSfxrHomePageState extends State<FSfxrHomePage> {
   // Choice from child button
-  AppBarChoise _activeButton = AppBarChoise.none;
+  // AppBarChoise _activeButton = AppBarChoise.none;
 
   @override
   Widget build(BuildContext context) {
@@ -53,34 +53,21 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
   }
 
   // A button child will call this with its "id"
-  void _appBarChoise(AppBarChoise id) {
-    setState(() {
-      _activeButton = id;
-    });
-  }
+  // void _appBarChoise(AppBarChoise id) {
+  //   final provider = ChoiceProvider.of(context);
+
+  //   setState(() {
+  //     provider.buttonModel.id = id;
+  //     // _activeButton = id;
+  //   });
+  // }
 
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: Colors.black45,
       // Here we take the value from the FSfxrHomePage object that was created by
       // the App.build method, and use it to set our appbar title.
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          AppBarButton(
-            id: AppBarChoise.generators,
-            caption: 'Generators',
-            choiceCallback: _appBarChoise,
-            chosenId: _activeButton,
-          ),
-          AppBarButton(
-            id: AppBarChoise.waveForms,
-            caption: 'Wave Forms',
-            choiceCallback: _appBarChoise,
-            chosenId: _activeButton,
-          ),
-        ],
-      ),
+      title: ChoiceProvider(child: AppBarRow()),
     );
   }
 
