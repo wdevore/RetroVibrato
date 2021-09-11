@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:retro_vibrato/model/button_id.dart';
+import 'package:retro_vibrato/model/button_model.dart';
 
 class ChoiceProvider extends InheritedWidget {
-  final buttonModel = ButtonId();
+  final buttonModel = ButtonModel();
 
   ChoiceProvider({Key? key, required Widget child})
       : super(key: key, child: child);

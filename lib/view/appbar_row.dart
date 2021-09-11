@@ -25,7 +25,7 @@ class _AppBarRowState extends State<AppBarRow> {
         ),
         AppBarWaveFormsButton(
           id: AppBarChoise.waveForms,
-          caption: 'Wave Forms',
+          caption: 'Waves',
           choiceCallback: _appBarChoise,
           waveFormCallback: _waveFormSelected,
         ),
@@ -46,6 +46,9 @@ class _AppBarRowState extends State<AppBarRow> {
   }
 
   void _waveFormSelected(WaveForms? wave) {
-    print('Wave: $wave');
+    final provider = ChoiceProvider.of(context);
+    setState(() {
+      provider.buttonModel.selectedWave = wave ?? WaveForms.None;
+    });
   }
 }

@@ -45,14 +45,19 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
     return provider.buttonModel.id == id ? Colors.orange : Colors.black12;
   }
 
+  String _getWave(WaveForms wave) => wave.toString().split('.')[1];
+
   @override
   Widget build(BuildContext context) {
+    final provider = ChoiceProvider.of(context);
+    String cap = caption + ' (${_getWave(provider.buttonModel.selectedWave)})';
+
     return TextButton(
       onPressed: () {
         choiceCallback(id);
         _displayDialog(context);
       },
-      child: Text(caption),
+      child: Text(cap),
       style: TextButton.styleFrom(
         padding: const EdgeInsets.only(left: 10, right: 10),
         primary: Colors.white,
@@ -160,8 +165,8 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
       },
     );
 
-    if (_waveFormsSelected != null) {
-      waveFormCallback(_waveFormsSelected);
-    }
+    // if (_waveFormsSelected != null) {
+    //   waveFormCallback(_waveFormsSelected);
+    // }
   }
 }

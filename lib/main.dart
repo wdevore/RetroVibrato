@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:retro_vibrato/view/choice_provider.dart';
 import 'package:retro_vibrato/view/appbar_row.dart';
 import 'package:retro_vibrato/view/custom_slider_thumb_rect.dart';
+import 'package:retro_vibrato/view/expansion_panel.dart';
 
 void main() {
   runApp(FSfxrApp());
@@ -48,7 +49,7 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
     return Scaffold(
       appBar: _buildAppBar(),
       drawer: _buildDrawer(),
-      body: _buildBody(),
+      body: _buildExpansionPanelBody(),
     );
   }
 
@@ -128,6 +129,10 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
         ],
       ),
     );
+  }
+
+  SliderExpansionPanel _buildExpansionPanelBody() {
+    return SliderExpansionPanel();
   }
 
   SliderTheme _buildBasicSlider() {

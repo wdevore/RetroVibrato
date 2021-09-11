@@ -11,6 +11,7 @@ enum Generators {
   Random,
   Tone,
   Mutate,
+  None,
 }
 enum WaveForms {
   Square,
@@ -20,6 +21,7 @@ enum WaveForms {
   WhiteNoise,
   PinkNoise,
   RedNoise,
+  None,
 }
 
 typedef void ChoiceCallback(AppBarChoise id);
