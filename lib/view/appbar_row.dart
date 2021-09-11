@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'appbar_choice.dart';
-import 'appbar_button.dart';
+import 'appbar_generators_button.dart';
+import 'appbar_waveforms_button.dart';
 import 'choice_provider.dart';
 
 class AppBarRow extends StatefulWidget {
@@ -16,15 +17,17 @@ class _AppBarRowState extends State<AppBarRow> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        AppBarButton(
+        AppBarGeneratorsButton(
           id: AppBarChoise.generators,
           caption: 'Generators',
           choiceCallback: _appBarChoise,
+          generatorCallback: _generatorSelected,
         ),
-        AppBarButton(
+        AppBarWaveFormsButton(
           id: AppBarChoise.waveForms,
           caption: 'Wave Forms',
           choiceCallback: _appBarChoise,
+          waveFormCallback: _waveFormSelected,
         ),
       ],
     );
@@ -36,5 +39,13 @@ class _AppBarRowState extends State<AppBarRow> {
     setState(() {
       provider.buttonModel.id = id;
     });
+  }
+
+  void _generatorSelected(Generators? generator) {
+    print('Gen: $generator');
+  }
+
+  void _waveFormSelected(WaveForms? wave) {
+    print('Wave: $wave');
   }
 }

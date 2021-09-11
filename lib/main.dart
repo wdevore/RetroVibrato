@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retro_vibrato/view/choice_provider.dart';
 import 'package:retro_vibrato/view/appbar_row.dart';
+import 'package:retro_vibrato/view/custom_slider_thumb_rect.dart';
 
 void main() {
   runApp(FSfxrApp());
@@ -40,8 +41,7 @@ class FSfxrHomePage extends StatefulWidget {
 }
 
 class _FSfxrHomePageState extends State<FSfxrHomePage> {
-  // Choice from child button
-  // AppBarChoise _activeButton = AppBarChoise.none;
+  double _currentSliderValue = 0.5;
 
   @override
   Widget build(BuildContext context) {
@@ -124,14 +124,65 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
         // horizontal).
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            'You have pushed the button this many times:',
-          ),
-          Text(
-            '99',
-            style: Theme.of(context).textTheme.headline4,
-          ),
+          _buildCustomSlider(),
         ],
+      ),
+    );
+  }
+
+  SliderTheme _buildBasicSlider() {
+    return SliderTheme(
+      data: SliderTheme.of(context).copyWith(
+        activeTrackColor: Colors.red[700],
+        inactiveTrackColor: Colors.red[100],
+        trackShape: RectangularSliderTrackShape(),
+        trackHeight: 4.0,
+        thumbColor: Colors.redAccent,
+        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+        overlayColor: Colors.red.withAlpha(32),
+        overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
+      ),
+      child: Slider(
+        value: _currentSliderValue,
+        min: 0,
+        max: 100,
+        divisions: 5,
+        onChanged: (value) {
+          setState(() {
+            _currentSliderValue = value;
+          });
+        },
+      ),
+    );
+  }
+
+  SliderTheme _buildCustomSlider() {
+    return SliderTheme(
+      data: SliderTheme.of(context).copyWith(
+        activeTrackColor: Colors.blue[700],
+        inactiveTrackColor: Colors.blue[700],
+        trackShape: RectangularSliderTrackShape(),
+        trackHeight: 10.0,
+        thumbColor: Colors.white,
+        thumbShape: CustomSliderThumbRect(
+          thumbRadius: 15.0,
+          thumbHeight: 25,
+          min: 0,
+          max: 100,
+        ),
+        overlayColor: Colors.blue.withAlpha(32),
+        overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
+      ),
+      child: Slider(
+        value: _currentSliderValue,
+        min: 0.0,
+        max: 1.0,
+        divisions: 100,
+        onChanged: (value) {
+          setState(() {
+            _currentSliderValue = value;
+          });
+        },
       ),
     );
   }
