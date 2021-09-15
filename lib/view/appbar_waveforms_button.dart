@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:retro_vibrato/view/choice_provider.dart';
+import 'package:retro_vibrato/model/choice_provider.dart';
 import 'appbar_choice.dart';
 
 class AppBarWaveFormsButton extends StatefulWidget {
@@ -31,8 +31,6 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
   ChoiceCallback choiceCallback;
   WaveFormCallback waveFormCallback;
 
-  WaveForms? _waveFormsSelected = WaveForms.Sine;
-
   _AppBarWaveFormsButtonState(
     this.id,
     this.caption,
@@ -45,12 +43,13 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
     return provider.buttonModel.id == id ? Colors.orange : Colors.black12;
   }
 
-  String _getWave(WaveForms wave) => wave.toString().split('.')[1];
+  String _getWave(WaveForms wave) => wave.toString().split('.').last;
 
   @override
   Widget build(BuildContext context) {
     final provider = ChoiceProvider.of(context);
-    String cap = caption + ' (${_getWave(provider.buttonModel.selectedWave)})';
+    final String cap =
+        caption + ' (${_getWave(provider.buttonModel.selectedWave)})';
 
     return TextButton(
       onPressed: () {
@@ -67,7 +66,8 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
   }
 
   _displayDialog(BuildContext context) async {
-    _waveFormsSelected = await showDialog(
+    // _waveFormsSelected =
+    await showDialog(
       context: context,
       builder: (BuildContext context) {
         return Container(

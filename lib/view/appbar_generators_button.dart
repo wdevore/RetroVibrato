@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:retro_vibrato/view/choice_provider.dart';
+import 'package:retro_vibrato/model/choice_provider.dart';
 import 'appbar_choice.dart';
 
 class AppBarGeneratorsButton extends StatefulWidget {

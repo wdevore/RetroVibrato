@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:retro_vibrato/view/choice_provider.dart';
+import 'package:retro_vibrato/model/settings_model.dart';
+import 'package:retro_vibrato/model/settings_provider.dart';
+import 'package:retro_vibrato/model/choice_provider.dart';
 import 'package:retro_vibrato/view/appbar_row.dart';
 import 'package:retro_vibrato/view/custom_slider_thumb_rect.dart';
-import 'package:retro_vibrato/view/expansion_panel.dart';
+import 'package:retro_vibrato/view/settings_panels.dart';
 
 void main() {
   runApp(FSfxrApp());
@@ -53,16 +55,6 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
     );
   }
 
-  // A button child will call this with its "id"
-  // void _appBarChoise(AppBarChoise id) {
-  //   final provider = ChoiceProvider.of(context);
-
-  //   setState(() {
-  //     provider.buttonModel.id = id;
-  //     // _activeButton = id;
-  //   });
-  // }
-
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: Colors.black45,
@@ -110,30 +102,43 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
     );
   }
 
-  Center _buildBody() {
-    return Center(
-      child: Column(
-        // Invoke "debug painting" (press "p" in the console, choose the
-        // "Toggle Debug Paint" action from the Flutter Inspector in Android
-        // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-        // to see the wireframe for each widget.
-        //
-        // Column has various properties to control how it sizes itself and
-        // how it positions its children. Here we use mainAxisAlignment to
-        // center the children vertically; the main axis here is the vertical
-        // axis because Columns are vertical (the cross axis would be
-        // horizontal).
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _buildCustomSlider(),
-        ],
-      ),
-    );
+  SettingsProvider _buildExpansionPanelBody() {
+    return SettingsProvider(child: SettingsPanels());
   }
 
-  SliderExpansionPanel _buildExpansionPanelBody() {
-    return SliderExpansionPanel();
-  }
+  // SliderTheme _buildCustomSlider(EnvelopeSettings env) {
+  //   print('build slider : ${env.attack}');
+  //   return SliderTheme(
+  //     data: SliderTheme.of(context).copyWith(
+  //       activeTrackColor: Colors.blue[700],
+  //       inactiveTrackColor: Colors.blue[700],
+  //       trackShape: RectangularSliderTrackShape(),
+  //       trackHeight: 10.0,
+  //       thumbColor: Colors.white,
+  //       thumbShape: CustomSliderThumbRect(
+  //         thumbRadius: 15.0,
+  //         thumbHeight: 25,
+  //         min: 0,
+  //         max: 100,
+  //         sliderValue: env.attack,
+  //       ),
+  //       overlayColor: Colors.blue.withAlpha(32),
+  //       overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
+  //     ),
+  //     child: Slider(
+  //       value: env.attack,
+  //       min: 0.0,
+  //       max: 1.0,
+  //       divisions: 100,
+  //       onChanged: (value) {
+  //         setState(() {
+  //           print('val: $env.attack');
+  //           env.attack = value;
+  //         });
+  //       },
+  //     ),
+  //   );
+  // }
 
   SliderTheme _buildBasicSlider() {
     return SliderTheme(
@@ -153,37 +158,7 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
         max: 100,
         divisions: 5,
         onChanged: (value) {
-          setState(() {
-            _currentSliderValue = value;
-          });
-        },
-      ),
-    );
-  }
-
-  SliderTheme _buildCustomSlider() {
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.blue[700],
-        inactiveTrackColor: Colors.blue[700],
-        trackShape: RectangularSliderTrackShape(),
-        trackHeight: 10.0,
-        thumbColor: Colors.white,
-        thumbShape: CustomSliderThumbRect(
-          thumbRadius: 15.0,
-          thumbHeight: 25,
-          min: 0,
-          max: 100,
-        ),
-        overlayColor: Colors.blue.withAlpha(32),
-        overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
-      ),
-      child: Slider(
-        value: _currentSliderValue,
-        min: 0.0,
-        max: 1.0,
-        divisions: 100,
-        onChanged: (value) {
+          print('basic value: $value');
           setState(() {
             _currentSliderValue = value;
           });

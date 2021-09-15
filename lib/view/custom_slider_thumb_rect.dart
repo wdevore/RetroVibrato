@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 class CustomSliderThumbRect extends SliderComponentShape {
   final double thumbRadius;
   final int thumbHeight;
-  final int min;
-  final int max;
+  final double min;
+  final double max;
+  final double sliderValue;
 
   const CustomSliderThumbRect({
     required this.thumbRadius,
     required this.thumbHeight,
     required this.min,
     required this.max,
+    required this.sliderValue,
   });
 
   @override
@@ -56,12 +58,15 @@ class CustomSliderThumbRect extends SliderComponentShape {
             fontWeight: FontWeight.w700,
             color: sliderTheme?.thumbColor,
             height: 1),
-        text: '${getValue(value)}');
+        text: '${getValue(sliderValue)}');
+
     TextPainter tp = new TextPainter(
         text: span,
         textAlign: TextAlign.left,
         textDirection: TextDirection.ltr);
+
     tp.layout();
+
     Offset textCenter =
         Offset(center.dx - (tp.width / 2), center.dy - (tp.height / 2));
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'appbar_choice.dart';
 import 'appbar_generators_button.dart';
 import 'appbar_waveforms_button.dart';
-import 'choice_provider.dart';
+import '../model/choice_provider.dart';
 
 class AppBarRow extends StatefulWidget {
   AppBarRow({Key? key}) : super(key: key);
