@@ -25,15 +25,17 @@ class FrequencySettings {
 }
 
 class VibratoSettings {
-  bool expanded = false;
-  double depth = 0.0;
-  double speed = 0.0;
+  final String title = "Vibrato";
+  bool isExpanded = false;
+  final Field depth = Field(0.0, 1.0, 0.25, "Depth");
+  final Field speed = Field(0.0, 1.0, 0.0, "Speed");
 }
 
 class ArpeggiationSettings {
-  bool expanded = false;
-  double multiplier = 0.0;
-  double speed = 0.0;
+  final String title = "Arpeggiation";
+  bool isExpanded = false;
+  final Field multiplier = Field(0.0, 1.0, 0.25, "Multiplier");
+  final Field speed = Field(0.0, 1.0, 0.25, "Speed");
 }
 
 class DutyCycleSettings {

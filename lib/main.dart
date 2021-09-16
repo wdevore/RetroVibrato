@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:retro_vibrato/model/settings_model.dart';
 import 'package:retro_vibrato/model/settings_provider.dart';
 import 'package:retro_vibrato/model/choice_provider.dart';
 import 'package:retro_vibrato/view/appbar_row.dart';
-import 'package:retro_vibrato/view/custom_slider_thumb_rect.dart';
 import 'package:retro_vibrato/view/settings_panels.dart';
 
 void main() {
@@ -103,42 +101,9 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
   }
 
   SettingsProvider _buildExpansionPanelBody() {
-    return SettingsProvider(child: SettingsPanels());
+    // return SettingsProvider(child: SettingsPanels());
+    return SettingsProvider(child: SettingsExpansionPanels());
   }
-
-  // SliderTheme _buildCustomSlider(EnvelopeSettings env) {
-  //   print('build slider : ${env.attack}');
-  //   return SliderTheme(
-  //     data: SliderTheme.of(context).copyWith(
-  //       activeTrackColor: Colors.blue[700],
-  //       inactiveTrackColor: Colors.blue[700],
-  //       trackShape: RectangularSliderTrackShape(),
-  //       trackHeight: 10.0,
-  //       thumbColor: Colors.white,
-  //       thumbShape: CustomSliderThumbRect(
-  //         thumbRadius: 15.0,
-  //         thumbHeight: 25,
-  //         min: 0,
-  //         max: 100,
-  //         sliderValue: env.attack,
-  //       ),
-  //       overlayColor: Colors.blue.withAlpha(32),
-  //       overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
-  //     ),
-  //     child: Slider(
-  //       value: env.attack,
-  //       min: 0.0,
-  //       max: 1.0,
-  //       divisions: 100,
-  //       onChanged: (value) {
-  //         setState(() {
-  //           print('val: $env.attack');
-  //           env.attack = value;
-  //         });
-  //       },
-  //     ),
-  //   );
-  // }
 
   SliderTheme _buildBasicSlider() {
     return SliderTheme(
