@@ -49,12 +49,18 @@ class SettingsExpansionPanels extends StatelessWidget {
           SettingsFrequencySubPanel(settings: data.frequencySettings),
           SettingsVibratoSubPanel(settings: data.vibratoSettings),
           SettingsArpeggiationSubPanel(settings: data.arpeggiationSettings),
+          SettingsDutyCycleSubPanel(settings: data.dutyCycleSettings),
+          SettingsRetriggerSubPanel(settings: data.retriggerSettings),
+          SettingsFlangerSubPanel(settings: data.flangerSettings),
+          SettingsLowPassFilterSubPanel(settings: data.lowPassFilterSettings),
+          SettingsHighPassFilterSubPanel(settings: data.highPassFilterSettings),
         ],
       ),
     );
   }
 }
 
+// ##############---------------##############---------------
 class SettingsEnvelopeSubPanel extends StatefulWidget {
   SettingsEnvelopeSubPanel({Key? key, required this.settings})
       : super(key: key);
@@ -76,7 +82,7 @@ class _SettingsEnvelopeSubPanelsState extends State<SettingsEnvelopeSubPanel> {
     return ExpansionPanelList(
       expandedHeaderPadding: EdgeInsets.zero,
       dividerColor: Colors.white,
-      animationDuration: Duration(milliseconds: 150),
+      animationDuration: Duration(milliseconds: 200),
       expansionCallback: (int index, bool isExpanded) {
         setState(() {
           settings.isExpanded = !isExpanded;
@@ -85,71 +91,21 @@ class _SettingsEnvelopeSubPanelsState extends State<SettingsEnvelopeSubPanel> {
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Colors.black38,
+          backgroundColor: Theme.of(context).backgroundColor,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
           body: Column(
             children: [
-              _buildSliderRow(settings.attack),
-              _buildSliderRow(settings.sustain),
-              _buildSliderRow(settings.punch),
-              _buildSliderRow(settings.decay),
+              SettingsSlider(data: settings.attack),
+              SettingsSlider(data: settings.sustain),
+              SettingsSlider(data: settings.punch),
+              SettingsSlider(data: settings.decay),
             ],
           ),
           isExpanded: settings.isExpanded,
         ),
       ],
-    );
-  }
-
-  SliderTheme _buildSlider(Field data) {
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.blue[700],
-        inactiveTrackColor: Colors.blue[700],
-        trackShape: RectangularSliderTrackShape(),
-        trackHeight: 5.0,
-        thumbColor: Colors.white,
-        thumbShape: CustomSliderThumbRect(
-          thumbRadius: 15.0,
-          thumbHeight: 25,
-          min: data.min,
-          max: data.max,
-          sliderValue: data.value,
-        ),
-        overlayColor: Colors.blue.withAlpha(32),
-        overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
-      ),
-      child: Slider(
-        value: data.value,
-        min: data.min,
-        max: data.max,
-        divisions: 200,
-        onChanged: (value) {
-          setState(() {
-            data.value = value;
-          });
-        },
-      ),
-    );
-  }
-
-  Container _buildSliderRow(Field data) {
-    return Container(
-      height: 30,
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: _buildSliderLabel(data.label),
-          ),
-          Expanded(
-            flex: 4,
-            child: _buildSlider(data),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -186,71 +142,21 @@ class _SettingsFrequencySubPanelsState
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Colors.black38,
+          backgroundColor: Theme.of(context).backgroundColor,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
           body: Column(
             children: [
-              _buildSliderRow(settings.frequency),
-              _buildSliderRow(settings.minCutoff),
-              _buildSliderRow(settings.slide),
-              _buildSliderRow(settings.deltaSlide),
+              SettingsSlider(data: settings.frequency),
+              SettingsSlider(data: settings.minCutoff),
+              SettingsSlider(data: settings.slide),
+              SettingsSlider(data: settings.deltaSlide),
             ],
           ),
           isExpanded: settings.isExpanded,
         ),
       ],
-    );
-  }
-
-  SliderTheme _buildSlider(Field data) {
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.blue[700],
-        inactiveTrackColor: Colors.blue[700],
-        trackShape: RectangularSliderTrackShape(),
-        trackHeight: 5.0,
-        thumbColor: Colors.white,
-        thumbShape: CustomSliderThumbRect(
-          thumbRadius: 15.0,
-          thumbHeight: 25,
-          min: data.min,
-          max: data.max,
-          sliderValue: data.value,
-        ),
-        overlayColor: Colors.blue.withAlpha(32),
-        overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
-      ),
-      child: Slider(
-        value: data.value,
-        min: data.min,
-        max: data.max,
-        divisions: 200,
-        onChanged: (value) {
-          setState(() {
-            data.value = value;
-          });
-        },
-      ),
-    );
-  }
-
-  Container _buildSliderRow(Field data) {
-    return Container(
-      height: 30,
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: _buildSliderLabel(data.label),
-          ),
-          Expanded(
-            flex: 4,
-            child: _buildSlider(data),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -285,69 +191,19 @@ class _SettingsVibratoSubPanelsState extends State<SettingsVibratoSubPanel> {
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Colors.black38,
+          backgroundColor: Theme.of(context).backgroundColor,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
           body: Column(
             children: [
-              _buildSliderRow(settings.depth),
-              _buildSliderRow(settings.speed),
+              SettingsSlider(data: settings.depth),
+              SettingsSlider(data: settings.speed),
             ],
           ),
           isExpanded: settings.isExpanded,
         ),
       ],
-    );
-  }
-
-  SliderTheme _buildSlider(Field data) {
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.blue[700],
-        inactiveTrackColor: Colors.blue[700],
-        trackShape: RectangularSliderTrackShape(),
-        trackHeight: 5.0,
-        thumbColor: Colors.white,
-        thumbShape: CustomSliderThumbRect(
-          thumbRadius: 15.0,
-          thumbHeight: 25,
-          min: data.min,
-          max: data.max,
-          sliderValue: data.value,
-        ),
-        overlayColor: Colors.blue.withAlpha(32),
-        overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
-      ),
-      child: Slider(
-        value: data.value,
-        min: data.min,
-        max: data.max,
-        divisions: 200,
-        onChanged: (value) {
-          setState(() {
-            data.value = value;
-          });
-        },
-      ),
-    );
-  }
-
-  Container _buildSliderRow(Field data) {
-    return Container(
-      height: 30,
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: _buildSliderLabel(data.label),
-          ),
-          Expanded(
-            flex: 4,
-            child: _buildSlider(data),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -384,14 +240,14 @@ class _SettingsArpeggiationSubPanelsState
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Colors.black38,
+          backgroundColor: Theme.of(context).backgroundColor,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
           body: Column(
             children: [
-              _buildSliderRow(settings.multiplier),
-              _buildSliderRow(settings.speed),
+              SettingsSlider(data: settings.multiplier),
+              SettingsSlider(data: settings.speed),
             ],
           ),
           isExpanded: settings.isExpanded,
@@ -399,12 +255,294 @@ class _SettingsArpeggiationSubPanelsState
       ],
     );
   }
+}
+
+// ##############---------------##############---------------
+class SettingsDutyCycleSubPanel extends StatefulWidget {
+  SettingsDutyCycleSubPanel({Key? key, required this.settings})
+      : super(key: key);
+
+  final DutyCycleSettings settings;
+
+  @override
+  _SettingsDutyCycleSubPanelsState createState() =>
+      _SettingsDutyCycleSubPanelsState(settings);
+}
+
+class _SettingsDutyCycleSubPanelsState
+    extends State<SettingsDutyCycleSubPanel> {
+  final DutyCycleSettings settings;
+
+  _SettingsDutyCycleSubPanelsState(this.settings);
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionPanelList(
+      expandedHeaderPadding: EdgeInsets.zero,
+      dividerColor: Colors.white,
+      animationDuration: Duration(milliseconds: 150),
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          settings.isExpanded = !isExpanded;
+        });
+      },
+      children: [
+        ExpansionPanel(
+          canTapOnHeader: true,
+          backgroundColor: Theme.of(context).backgroundColor,
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return _buildTitle(settings.title);
+          },
+          body: Column(
+            children: [
+              SettingsSlider(data: settings.dutyCycle),
+              SettingsSlider(data: settings.sweep),
+            ],
+          ),
+          isExpanded: settings.isExpanded,
+        ),
+      ],
+    );
+  }
+}
+
+// ##############---------------##############---------------
+class SettingsRetriggerSubPanel extends StatefulWidget {
+  SettingsRetriggerSubPanel({Key? key, required this.settings})
+      : super(key: key);
+
+  final RetriggerSettings settings;
+
+  @override
+  _SettingsRetriggerSubPanelsState createState() =>
+      _SettingsRetriggerSubPanelsState(settings);
+}
+
+class _SettingsRetriggerSubPanelsState
+    extends State<SettingsRetriggerSubPanel> {
+  final RetriggerSettings settings;
+
+  _SettingsRetriggerSubPanelsState(this.settings);
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionPanelList(
+      expandedHeaderPadding: EdgeInsets.zero,
+      dividerColor: Colors.white,
+      animationDuration: Duration(milliseconds: 150),
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          settings.isExpanded = !isExpanded;
+        });
+      },
+      children: [
+        ExpansionPanel(
+          canTapOnHeader: true,
+          backgroundColor: Theme.of(context).backgroundColor,
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return _buildTitle(settings.title);
+          },
+          body: Column(
+            children: [
+              SettingsSlider(data: settings.rate),
+            ],
+          ),
+          isExpanded: settings.isExpanded,
+        ),
+      ],
+    );
+  }
+}
+
+// ##############---------------##############---------------
+class SettingsFlangerSubPanel extends StatefulWidget {
+  SettingsFlangerSubPanel({Key? key, required this.settings}) : super(key: key);
+
+  final FlangerSettings settings;
+
+  @override
+  _SettingsFlangerSubPanelsState createState() =>
+      _SettingsFlangerSubPanelsState(settings);
+}
+
+class _SettingsFlangerSubPanelsState extends State<SettingsFlangerSubPanel> {
+  final FlangerSettings settings;
+
+  _SettingsFlangerSubPanelsState(this.settings);
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionPanelList(
+      expandedHeaderPadding: EdgeInsets.zero,
+      dividerColor: Colors.white,
+      animationDuration: Duration(milliseconds: 150),
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          settings.isExpanded = !isExpanded;
+        });
+      },
+      children: [
+        ExpansionPanel(
+          canTapOnHeader: true,
+          backgroundColor: Theme.of(context).backgroundColor,
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return _buildTitle(settings.title);
+          },
+          body: Column(
+            children: [
+              SettingsSlider(data: settings.offset),
+              SettingsSlider(data: settings.sweep),
+            ],
+          ),
+          isExpanded: settings.isExpanded,
+        ),
+      ],
+    );
+  }
+}
+
+// ##############---------------##############---------------
+class SettingsLowPassFilterSubPanel extends StatefulWidget {
+  SettingsLowPassFilterSubPanel({Key? key, required this.settings})
+      : super(key: key);
+
+  final LowPassFilterSettings settings;
+
+  @override
+  _SettingsLowPassFilterSubPanelsState createState() =>
+      _SettingsLowPassFilterSubPanelsState(settings);
+}
+
+class _SettingsLowPassFilterSubPanelsState
+    extends State<SettingsLowPassFilterSubPanel> {
+  final LowPassFilterSettings settings;
+
+  _SettingsLowPassFilterSubPanelsState(this.settings);
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionPanelList(
+      expandedHeaderPadding: EdgeInsets.zero,
+      dividerColor: Colors.white,
+      animationDuration: Duration(milliseconds: 150),
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          settings.isExpanded = !isExpanded;
+        });
+      },
+      children: [
+        ExpansionPanel(
+          canTapOnHeader: true,
+          backgroundColor: Theme.of(context).backgroundColor,
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return _buildTitle(settings.title);
+          },
+          body: Column(
+            children: [
+              SettingsSlider(data: settings.cutoffFreq),
+              SettingsSlider(data: settings.cutoffSweep),
+              SettingsSlider(data: settings.resonance),
+            ],
+          ),
+          isExpanded: settings.isExpanded,
+        ),
+      ],
+    );
+  }
+}
+
+// ##############---------------##############---------------
+class SettingsHighPassFilterSubPanel extends StatefulWidget {
+  SettingsHighPassFilterSubPanel({Key? key, required this.settings})
+      : super(key: key);
+
+  final HighPassFilterSettings settings;
+
+  @override
+  _SettingsHighPassFilterSubPanelsState createState() =>
+      _SettingsHighPassFilterSubPanelsState(settings);
+}
+
+class _SettingsHighPassFilterSubPanelsState
+    extends State<SettingsHighPassFilterSubPanel> {
+  final HighPassFilterSettings settings;
+
+  _SettingsHighPassFilterSubPanelsState(this.settings);
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionPanelList(
+      expandedHeaderPadding: EdgeInsets.zero,
+      dividerColor: Colors.white,
+      animationDuration: Duration(milliseconds: 150),
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          settings.isExpanded = !isExpanded;
+        });
+      },
+      children: [
+        ExpansionPanel(
+          canTapOnHeader: true,
+          backgroundColor: Theme.of(context).backgroundColor,
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return _buildTitle(settings.title);
+          },
+          body: Column(
+            children: [
+              SettingsSlider(data: settings.cutoffFreq),
+              SettingsSlider(data: settings.cutoffSweep),
+            ],
+          ),
+          isExpanded: settings.isExpanded,
+        ),
+      ],
+    );
+  }
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class SettingsSlider extends StatefulWidget {
+  SettingsSlider({Key? key, required this.data}) : super(key: key);
+
+  final Field data;
+
+  @override
+  _SliderState createState() => _SliderState(data);
+}
+
+class _SliderState extends State<SettingsSlider> {
+  final Field data;
+
+  _SliderState(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildSliderRow(data);
+  }
+
+  Container _buildSliderRow(Field data) {
+    return Container(
+      height: 30,
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: _buildSliderLabel(data.label),
+          ),
+          Expanded(
+            flex: 3,
+            child: _buildSlider(data),
+          ),
+        ],
+      ),
+    );
+  }
 
   SliderTheme _buildSlider(Field data) {
     return SliderTheme(
       data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.blue[700],
-        inactiveTrackColor: Colors.blue[700],
+        activeTrackColor: Colors.orange,
+        inactiveTrackColor: Colors.amberAccent,
         trackShape: RectangularSliderTrackShape(),
         trackHeight: 5.0,
         thumbColor: Colors.white,
@@ -428,24 +566,6 @@ class _SettingsArpeggiationSubPanelsState
             data.value = value;
           });
         },
-      ),
-    );
-  }
-
-  Container _buildSliderRow(Field data) {
-    return Container(
-      height: 30,
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: _buildSliderLabel(data.label),
-          ),
-          Expanded(
-            flex: 4,
-            child: _buildSlider(data),
-          ),
-        ],
       ),
     );
   }

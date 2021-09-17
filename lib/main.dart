@@ -17,6 +17,7 @@ class FSfxrApp extends StatelessWidget {
       theme: ThemeData(
         // This is the theme of your application.
         primarySwatch: Colors.orange,
+        backgroundColor: Colors.grey[500],
       ),
       home: FSfxrHomePage(title: 'RetroVibrato'),
     );
@@ -42,11 +43,10 @@ class FSfxrHomePage extends StatefulWidget {
 }
 
 class _FSfxrHomePageState extends State<FSfxrHomePage> {
-  double _currentSliderValue = 0.5;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: _buildAppBar(),
       drawer: _buildDrawer(),
       body: _buildExpansionPanelBody(),
@@ -55,7 +55,7 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.black45,
+      backgroundColor: Colors.black54,
       // Here we take the value from the FSfxrHomePage object that was created by
       // the App.build method, and use it to set our appbar title.
       title: ChoiceProvider(child: AppBarRow()),
@@ -101,33 +101,10 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
   }
 
   SettingsProvider _buildExpansionPanelBody() {
-    // return SettingsProvider(child: SettingsPanels());
-    return SettingsProvider(child: SettingsExpansionPanels());
-  }
-
-  SliderTheme _buildBasicSlider() {
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.red[700],
-        inactiveTrackColor: Colors.red[100],
-        trackShape: RectangularSliderTrackShape(),
-        trackHeight: 4.0,
-        thumbColor: Colors.redAccent,
-        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
-        overlayColor: Colors.red.withAlpha(32),
-        overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
-      ),
-      child: Slider(
-        value: _currentSliderValue,
-        min: 0,
-        max: 100,
-        divisions: 5,
-        onChanged: (value) {
-          print('basic value: $value');
-          setState(() {
-            _currentSliderValue = value;
-          });
-        },
+    return SettingsProvider(
+      child: Theme(
+        data: Theme.of(context).copyWith(backgroundColor: Colors.black26),
+        child: SettingsExpansionPanels(),
       ),
     );
   }

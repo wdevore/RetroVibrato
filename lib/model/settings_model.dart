@@ -39,33 +39,38 @@ class ArpeggiationSettings {
 }
 
 class DutyCycleSettings {
-  bool expanded = false;
-  double dutyCycle = 0.0;
-  double sweep = 0.0;
+  final String title = "DutyCycle";
+  bool isExpanded = false;
+  final Field dutyCycle = Field(0.0, 1.0, 0.25, "DutyCycle");
+  final Field sweep = Field(0.0, 1.0, 0.25, "Sweep");
 }
 
 class RetriggerSettings {
-  bool expanded = false;
-  double rate = 0.0;
+  final String title = "Retrigger";
+  bool isExpanded = false;
+  final Field rate = Field(0.0, 1.0, 0.25, "Rate");
 }
 
 class FlangerSettings {
-  bool expanded = false;
-  double offset = 0.0;
-  double sweep = 0.0;
+  final String title = "Flanger";
+  bool isExpanded = false;
+  final Field offset = Field(0.0, 1.0, 0.25, "Offset");
+  final Field sweep = Field(0.0, 1.0, 0.25, "Sweep");
 }
 
 class LowPassFilterSettings {
-  bool expanded = false;
-  double cutoffFreq = 0.0;
-  double cutoffSweep = 0.0;
-  double resonance = 0.0;
+  final String title = "LowPass Filter";
+  bool isExpanded = false;
+  final Field cutoffFreq = Field(0.0, 1.0, 0.25, "CutoffFreq");
+  final Field cutoffSweep = Field(0.0, 1.0, 0.25, "CutoffSweep");
+  final Field resonance = Field(0.0, 1.0, 0.25, "Resonance");
 }
 
 class HighPassFilterSettings {
-  bool expanded = false;
-  double cutoffFreq = 0.0;
-  double cutoffSweep = 0.0;
+  final String title = "HighPass Filter";
+  bool isExpanded = false;
+  final Field cutoffFreq = Field(0.0, 1.0, 0.25, "CutoffFreq");
+  final Field cutoffSweep = Field(0.0, 1.0, 0.25, "CutoffSweep");
 }
 
 class SettingsModel {
