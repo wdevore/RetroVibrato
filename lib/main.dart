@@ -50,6 +50,25 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
       appBar: _buildAppBar(),
       drawer: _buildDrawer(),
       body: _buildExpansionPanelBody(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      floatingActionButton: Container(
+        width: 50,
+        height: 50,
+        margin: EdgeInsets.only(
+          top: kToolbarHeight,
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            print('Play');
+          },
+          child: const Icon(
+            Icons.play_arrow,
+            size: 50,
+            color: Colors.blueGrey,
+          ),
+          backgroundColor: Colors.lime,
+        ),
+      ),
     );
   }
 

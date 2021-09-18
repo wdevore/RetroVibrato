@@ -111,9 +111,18 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  waveFormCallback(WaveForms.Sawtooth);
+                  waveFormCallback(WaveForms.SawtoothRising);
                 },
-                child: const Text('Sawtooth',
+                child: const Text('Sawtooth Rising',
+                    style: TextStyle(
+                      color: Colors.white,
+                    )),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  waveFormCallback(WaveForms.SawtoothFalling);
+                },
+                child: const Text('Sawtooth Falling',
                     style: TextStyle(
                       color: Colors.white,
                     )),
