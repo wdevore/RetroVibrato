@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:retro_vibrato/model/enums.dart';
-// import 'appbar_choice.dart';
 import 'appbar_generators_button.dart';
 import 'appbar_waveforms_button.dart';
 import '../model/choice_provider.dart';

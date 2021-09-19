@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:retro_vibrato/model/enums.dart';
 import 'package:retro_vibrato/model/settings_model.dart';
 import 'package:retro_vibrato/model/settings_provider.dart';
 import 'package:retro_vibrato/model/choice_provider.dart';
@@ -137,10 +136,8 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
                   ),
                 ),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
                   // Then close the drawer
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
                 },
               ),
             ),
@@ -171,10 +168,8 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
                       fontSize: 20,
                     )),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
+                  _loadSfxrFile();
+                  // Navigator.pop(context);
                 },
               ),
             ),
@@ -210,5 +205,14 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
         child: SettingsExpansionPanels(),
       ),
     );
+  }
+
+  _loadSfxrFile() async {
+    // final params = OpenFileDialogParams(
+    //   dialogType: OpenFileDialogType.document,
+    //   sourceType: SourceType.photoLibrary,
+    // );
+    // final filePath = await FlutterFileDialog.pickFile(params: params);
+    // print(filePath);
   }
 }
