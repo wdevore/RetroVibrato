@@ -25,6 +25,7 @@ https://pub.dev/packages/audiofileplayer
 audiofileplayer 2.0.1
 
 # Tasks
+- Clicking a slider label resets it
 - Save to GDrive or local
 - Load from GDrive or local
 - Play byte buffer

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:retro_vibrato/model/enums.dart';
+// import 'package:retro_vibrato/model/enums.dart';
+import 'package:retro_vibrato/model/settings_model.dart';
 import 'package:retro_vibrato/model/settings_provider.dart';
 import 'package:retro_vibrato/model/choice_provider.dart';
 import 'package:retro_vibrato/view/appbar_row.dart';
+import 'package:retro_vibrato/view/auto_play.dart';
+import 'package:retro_vibrato/view/sample_rate.dart';
 import 'package:retro_vibrato/view/settings_panels.dart';
 
 void main() {
@@ -20,7 +23,11 @@ class FSfxrApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         backgroundColor: Colors.grey[500],
       ),
-      home: FSfxrHomePage(title: 'RetroVibrato'),
+      home: SettingsProvider(
+        child: FSfxrHomePage(
+          title: 'RetroVibrato',
+        ),
+      ),
     );
   }
 }
@@ -44,7 +51,7 @@ class FSfxrHomePage extends StatefulWidget {
 }
 
 class _FSfxrHomePageState extends State<FSfxrHomePage> {
-  SampleRate? _rate = SampleRate.KHz44;
+  // SampleRate? _rate = SampleRate.KHz44;
   bool isExpanded = false;
   bool autoPlayEnabled = false;
 
@@ -87,6 +94,9 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
   }
 
   Drawer _buildDrawer() {
+    final provider = SettingsProvider.of(context);
+    SettingsModel data = provider.settingsModel;
+
     return Drawer(
       // Add a ListView to the drawer. This ensures the user can scroll
       // through the options in the drawer if there isn't enough vertical
@@ -98,9 +108,7 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
           padding: EdgeInsets.zero,
           children: [
             Container(
-              height: kToolbarHeight + 50,
-              padding: EdgeInsets.only(bottom: 10),
-              margin: EdgeInsets.only(top: 0),
+              height: kToolbarHeight + 40,
               child: DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.black54,
@@ -121,11 +129,13 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
               decoration: BoxDecoration(color: Colors.orange.shade100),
               child: ListTile(
                 leading: Icon(Icons.save_outlined),
-                title: const Text('Save as *.Sfxr',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                    )),
+                title: const Text(
+                  'Save as *.Sfxr',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
                 onTap: () {
                   // Update the state of the app
                   // ...
@@ -168,120 +178,8 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
                 },
               ),
             ),
-            ExpansionPanelList(
-              expandedHeaderPadding: EdgeInsets.zero,
-              dividerColor: Colors.white,
-              animationDuration: Duration(milliseconds: 150),
-              expansionCallback: (int index, bool isExpanded) {
-                setState(() {
-                  this.isExpanded = !isExpanded;
-                });
-              },
-              children: [
-                ExpansionPanel(
-                  canTapOnHeader: true,
-                  backgroundColor: Colors.lime.shade200,
-                  headerBuilder: (BuildContext context, bool isExpanded) {
-                    return Center(
-                      child: Text(
-                        "Sample Rate",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                      ),
-                    );
-                  },
-                  body: Column(
-                    children: [
-                      RadioListTile<SampleRate>(
-                        title: const Text('44 KHz',
-                            style: TextStyle(
-                              color: Colors.blueGrey,
-                              fontSize: 20,
-                            )),
-                        value: SampleRate.KHz44,
-                        dense: true,
-                        groupValue: _rate,
-                        onChanged: (SampleRate? value) {
-                          setState(() {
-                            _rate = value;
-                          });
-                        },
-                      ),
-                      RadioListTile<SampleRate>(
-                        title: const Text('22 KHz',
-                            style: TextStyle(
-                              color: Colors.blueGrey,
-                              fontSize: 20,
-                            )),
-                        value: SampleRate.KHz22,
-                        dense: true,
-                        groupValue: _rate,
-                        onChanged: (SampleRate? value) {
-                          setState(() {
-                            _rate = value;
-                          });
-                        },
-                      ),
-                      RadioListTile<SampleRate>(
-                        title: const Text('11 KHz',
-                            style: TextStyle(
-                              color: Colors.blueGrey,
-                              fontSize: 20,
-                            )),
-                        value: SampleRate.KHz11,
-                        dense: true,
-                        groupValue: _rate,
-                        onChanged: (SampleRate? value) {
-                          setState(() {
-                            _rate = value;
-                          });
-                        },
-                      ),
-                      RadioListTile<SampleRate>(
-                        title: const Text('5.5 KHz',
-                            style: TextStyle(
-                              color: Colors.blueGrey,
-                              fontSize: 20,
-                            )),
-                        value: SampleRate.KHz55,
-                        dense: true,
-                        groupValue: _rate,
-                        onChanged: (SampleRate? value) {
-                          setState(() {
-                            _rate = value;
-                          });
-                        },
-                      )
-                    ],
-                  ),
-                  isExpanded: isExpanded,
-                ),
-              ],
-            ),
-            Container(
-              decoration: BoxDecoration(color: Colors.lime.shade300),
-              child: CheckboxListTile(
-                title: const Text(
-                  'Auto Play',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                  ),
-                ),
-                value: autoPlayEnabled,
-                onChanged: (bool? value) {
-                  setState(() {
-                    autoPlayEnabled = value!;
-                  });
-                },
-                secondary: const Icon(
-                  Icons.play_arrow_outlined,
-                  size: 30,
-                ),
-              ),
-            ),
+            SettingsSampleRateSubPanel(settings: data.appSettings),
+            SettingsAutoplayCheck(settings: data.appSettings),
             Container(
               decoration: BoxDecoration(color: Colors.lime.shade400),
               child: ListTile(

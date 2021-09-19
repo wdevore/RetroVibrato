@@ -3,37 +3,6 @@ import 'package:retro_vibrato/model/settings_model.dart';
 import 'package:retro_vibrato/model/settings_provider.dart';
 import 'package:retro_vibrato/view/custom_slider_thumb_rect.dart';
 
-ListTile _buildTitle(String title) {
-  return ListTile(
-    isThreeLine: false,
-    title: Container(
-      alignment: Alignment.center,
-      color: Colors.black26,
-      padding: EdgeInsets.only(top: 5, bottom: 5),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Colors.orangeAccent,
-        ),
-      ),
-    ),
-  );
-}
-
-Align _buildSliderLabel(String label) {
-  return Align(
-    alignment: Alignment.centerRight,
-    child: Text(
-      label,
-      style: TextStyle(
-        color: Colors.white,
-      ),
-    ),
-  );
-}
-
 // ***************************************************************
 class SettingsExpansionPanels extends StatelessWidget {
   // This contains all the Panels. Each panels is stateful.
@@ -569,4 +538,43 @@ class _SliderState extends State<SettingsSlider> {
       ),
     );
   }
+}
+
+ListTile _buildTitle(String title) {
+  return ListTile(
+    isThreeLine: false,
+    title: Container(
+      alignment: Alignment.center,
+      color: Colors.black26,
+      padding: EdgeInsets.only(top: 5, bottom: 5),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.orangeAccent,
+        ),
+      ),
+    ),
+  );
+}
+
+Align _buildSliderLabel(String label) {
+  return Align(
+    alignment: Alignment.centerRight,
+    child: TextButton(
+      onPressed: () {
+        // setState(() {
+        //     data.value = value;
+        //   });
+        print(label);
+      },
+      child: Text(
+        label,
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
+    ),
+  );
 }

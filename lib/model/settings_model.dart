@@ -1,9 +1,24 @@
+import 'package:retro_vibrato/model/enums.dart';
+
 class Field {
   double min = 0.0;
   double max = 1.0;
-  double value = 0.0;
+
+  dynamic value = 0;
+  dynamic rValue = 0;
+
   String label = "";
-  Field(this.min, this.max, this.value, this.label);
+
+  Field(this.min, this.max, this.value, this.label) {
+    rValue = value;
+  }
+  Field.noRange(this.value, this.label) {
+    rValue = value;
+  }
+
+  reset() {
+    value = rValue;
+  }
 }
 
 class EnvelopeSettings {
@@ -73,7 +88,17 @@ class HighPassFilterSettings {
   final Field cutoffSweep = Field(0.0, 1.0, 0.25, "CutoffSweep");
 }
 
+class AppSettings {
+  final Field sfxrFile = Field.noRange("", "Sfxr File");
+  final Field waveFile = Field.noRange("", "Wave File");
+  final Field destEmail = Field.noRange("", "Destination Email");
+  final Field autoplay = Field.noRange(true, "Auto Play");
+  final Field sampleRate = Field.noRange(SampleRate.KHz44, "Auto Play");
+  final Field volume = Field.noRange(0.5, "Auto Play");
+}
+
 class SettingsModel {
+  final appSettings = AppSettings();
   final envelopeSettings = EnvelopeSettings();
   final frequencySettings = FrequencySettings();
   final vibratoSettings = VibratoSettings();
