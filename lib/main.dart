@@ -183,19 +183,25 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
                   backgroundColor: Colors.lime.shade200,
                   headerBuilder: (BuildContext context, bool isExpanded) {
                     return Center(
-                        child: Text(
-                      "Sample Rate",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
+                      child: Text(
+                        "Sample Rate",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
                       ),
-                    ));
+                    );
                   },
                   body: Column(
                     children: [
                       RadioListTile<SampleRate>(
-                        title: const Text('44 KHz'),
+                        title: const Text('44 KHz',
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                              fontSize: 20,
+                            )),
                         value: SampleRate.KHz44,
+                        dense: true,
                         groupValue: _rate,
                         onChanged: (SampleRate? value) {
                           setState(() {
@@ -204,8 +210,13 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
                         },
                       ),
                       RadioListTile<SampleRate>(
-                        title: const Text('22 KHz'),
+                        title: const Text('22 KHz',
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                              fontSize: 20,
+                            )),
                         value: SampleRate.KHz22,
+                        dense: true,
                         groupValue: _rate,
                         onChanged: (SampleRate? value) {
                           setState(() {
@@ -214,8 +225,13 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
                         },
                       ),
                       RadioListTile<SampleRate>(
-                        title: const Text('11 KHz'),
+                        title: const Text('11 KHz',
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                              fontSize: 20,
+                            )),
                         value: SampleRate.KHz11,
+                        dense: true,
                         groupValue: _rate,
                         onChanged: (SampleRate? value) {
                           setState(() {
@@ -224,8 +240,13 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
                         },
                       ),
                       RadioListTile<SampleRate>(
-                        title: const Text('5.5 KHz'),
+                        title: const Text('5.5 KHz',
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                              fontSize: 20,
+                            )),
                         value: SampleRate.KHz55,
+                        dense: true,
                         groupValue: _rate,
                         onChanged: (SampleRate? value) {
                           setState(() {
