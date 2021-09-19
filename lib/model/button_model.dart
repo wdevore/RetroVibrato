@@ -1,6 +1,6 @@
-import 'package:retro_vibrato/view/appbar_choice.dart';
+import 'package:retro_vibrato/model/enums.dart';
 
 class ButtonModel {
   AppBarChoise id = AppBarChoise.none;
-  WaveForms selectedWave = WaveForms.None;
+  WaveForm selectedWave = WaveForm.None;
 }

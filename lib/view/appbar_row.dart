@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:retro_vibrato/model/enums.dart';
 import 'appbar_choice.dart';
 import 'appbar_generators_button.dart';
 import 'appbar_waveforms_button.dart';
@@ -41,14 +42,14 @@ class _AppBarRowState extends State<AppBarRow> {
     });
   }
 
-  void _generatorSelected(Generators? generator) {
+  void _generatorSelected(Generator? generator) {
     print('Gen: $generator');
   }
 
-  void _waveFormSelected(WaveForms? wave) {
+  void _waveFormSelected(WaveForm? wave) {
     final provider = ChoiceProvider.of(context);
     setState(() {
-      provider.buttonModel.selectedWave = wave ?? WaveForms.None;
+      provider.buttonModel.selectedWave = wave ?? WaveForm.None;
     });
   }
 }

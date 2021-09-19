@@ -5,6 +5,11 @@ A Flutter app for making arcade sounds from the 1970's and 80's
 - Save
     - sfxr
     - wave
+- Email
+    - Email address
+    - Type
+        - sfxr
+        - wave
 - Load
     - sfxr
 - Autoplay checkbox
@@ -18,3 +23,9 @@ A Flutter app for making arcade sounds from the 1970's and 80's
 
 https://pub.dev/packages/audiofileplayer
 audiofileplayer 2.0.1
+
+# Tasks
+- Save to GDrive or local
+- Load from GDrive or local
+- Play byte buffer
+- Port algorithm from Go to Dart

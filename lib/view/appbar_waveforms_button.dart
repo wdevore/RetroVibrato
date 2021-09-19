@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retro_vibrato/model/choice_provider.dart';
+import 'package:retro_vibrato/model/enums.dart';
 import 'appbar_choice.dart';
 
 class AppBarWaveFormsButton extends StatefulWidget {
@@ -43,7 +44,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
     return provider.buttonModel.id == id ? Colors.orange : Colors.black12;
   }
 
-  String _getWave(WaveForms wave) => wave.toString().split('.').last;
+  String _getWave(WaveForm wave) => wave.toString().split('.').last;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +85,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
             children: [
               SimpleDialogOption(
                 onPressed: () {
-                  waveFormCallback(WaveForms.Square);
+                  waveFormCallback(WaveForm.Square);
                 },
                 child: const Text('Square',
                     style: TextStyle(
@@ -93,7 +94,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  waveFormCallback(WaveForms.Triangle);
+                  waveFormCallback(WaveForm.Triangle);
                 },
                 child: const Text('Triangle',
                     style: TextStyle(
@@ -102,7 +103,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  waveFormCallback(WaveForms.Sine);
+                  waveFormCallback(WaveForm.Sine);
                 },
                 child: const Text('Sine',
                     style: TextStyle(
@@ -111,7 +112,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  waveFormCallback(WaveForms.SawtoothRising);
+                  waveFormCallback(WaveForm.SawtoothRising);
                 },
                 child: const Text('Sawtooth Rising',
                     style: TextStyle(
@@ -120,7 +121,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  waveFormCallback(WaveForms.SawtoothFalling);
+                  waveFormCallback(WaveForm.SawtoothFalling);
                 },
                 child: const Text('Sawtooth Falling',
                     style: TextStyle(
@@ -129,7 +130,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  waveFormCallback(WaveForms.WhiteNoise);
+                  waveFormCallback(WaveForm.WhiteNoise);
                 },
                 child: const Text('WhiteNoise',
                     style: TextStyle(
@@ -138,7 +139,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  waveFormCallback(WaveForms.PinkNoise);
+                  waveFormCallback(WaveForm.PinkNoise);
                 },
                 child: const Text('PinkNoise',
                     style: TextStyle(
@@ -147,7 +148,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  waveFormCallback(WaveForms.RedNoise);
+                  waveFormCallback(WaveForm.RedNoise);
                 },
                 child: const Text(
                   'RedNoise',

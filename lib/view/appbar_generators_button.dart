@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retro_vibrato/model/choice_provider.dart';
+import 'package:retro_vibrato/model/enums.dart';
 import 'appbar_choice.dart';
 
 class AppBarGeneratorsButton extends StatefulWidget {
@@ -31,7 +32,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
   ChoiceCallback choiceCallback;
   GeneratorCallback generatorCallback;
 
-  Generators? _generatorsSelected = Generators.Tone;
+  Generator? _generatorsSelected = Generator.Tone;
 
   _AppBarGeneratorsButtonState(
     this.id,
@@ -79,7 +80,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
             children: [
               SimpleDialogOption(
                 onPressed: () {
-                  generatorCallback(Generators.PickUp);
+                  generatorCallback(Generator.PickUp);
                 },
                 child: const Text(
                   'PickUp/Coin',
@@ -90,7 +91,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  generatorCallback(Generators.Laser);
+                  generatorCallback(Generator.Laser);
                 },
                 child: const Text(
                   'Laser/Shoot',
@@ -101,7 +102,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  generatorCallback(Generators.Explosion);
+                  generatorCallback(Generator.Explosion);
                 },
                 child: const Text(
                   'Explosion',
@@ -112,7 +113,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  generatorCallback(Generators.PowerUp);
+                  generatorCallback(Generator.PowerUp);
                 },
                 child: const Text(
                   'PowerUp',
@@ -123,7 +124,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  generatorCallback(Generators.Hit);
+                  generatorCallback(Generator.Hit);
                 },
                 child: const Text(
                   'Hit/Hurt',
@@ -134,7 +135,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  generatorCallback(Generators.Blip);
+                  generatorCallback(Generator.Blip);
                 },
                 child: const Text(
                   'Blip/Select',
@@ -145,7 +146,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  generatorCallback(Generators.Synth);
+                  generatorCallback(Generator.Synth);
                 },
                 child: const Text(
                   'Synth',
@@ -156,7 +157,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  generatorCallback(Generators.Random);
+                  generatorCallback(Generator.Random);
                 },
                 child: const Text(
                   'Random',
@@ -167,7 +168,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  generatorCallback(Generators.Tone);
+                  generatorCallback(Generator.Tone);
                 },
                 child: const Text(
                   'Tone',
@@ -178,7 +179,7 @@ class _AppBarGeneratorsButtonState extends State<AppBarGeneratorsButton> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  generatorCallback(Generators.Mutate);
+                  generatorCallback(Generator.Mutate);
                 },
                 child: const Text(
                   'Mutate',
