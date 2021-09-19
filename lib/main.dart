@@ -50,10 +50,6 @@ class FSfxrHomePage extends StatefulWidget {
 }
 
 class _FSfxrHomePageState extends State<FSfxrHomePage> {
-  // SampleRate? _rate = SampleRate.KHz44;
-  bool isExpanded = false;
-  bool autoPlayEnabled = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
