@@ -4,6 +4,7 @@ import 'package:retro_vibrato/model/settings_provider.dart';
 import 'package:retro_vibrato/model/choice_provider.dart';
 import 'package:retro_vibrato/view/appbar_row.dart';
 import 'package:retro_vibrato/view/auto_play.dart';
+import 'package:retro_vibrato/view/file_open_access.dart';
 import 'package:retro_vibrato/view/sample_rate.dart';
 import 'package:retro_vibrato/view/settings_panels.dart';
 
@@ -154,20 +155,9 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
                 },
               ),
             ),
-            Container(
-              decoration: BoxDecoration(color: Colors.orange.shade300),
-              child: ListTile(
-                leading: Icon(Icons.save_outlined),
-                title: const Text('Load an *.Sfxr',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                    )),
-                onTap: () {
-                  _loadSfxrFile();
-                  // Navigator.pop(context);
-                },
-              ),
+            FileOpenAccess(
+              settings: data,
+              label: 'Load an *.Sfxr',
             ),
             SettingsSampleRateSubPanel(settings: data.appSettings),
             SettingsAutoplayCheck(settings: data.appSettings),
@@ -201,14 +191,5 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
         child: SettingsExpansionPanels(),
       ),
     );
-  }
-
-  _loadSfxrFile() async {
-    // final params = OpenFileDialogParams(
-    //   dialogType: OpenFileDialogType.document,
-    //   sourceType: SourceType.photoLibrary,
-    // );
-    // final filePath = await FlutterFileDialog.pickFile(params: params);
-    // print(filePath);
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:retro_vibrato/model/enums.dart';
 
 class Field {
@@ -109,35 +111,7 @@ class SettingsModel {
   final lowPassFilterSettings = LowPassFilterSettings();
   final highPassFilterSettings = HighPassFilterSettings();
 
-  void setV(double value, int field) {
-    switch (field) {
-      case 0:
-        envelopeSettings.attack.value = value;
-        break;
-      case 1:
-        envelopeSettings.sustain.value = value;
-        break;
-      case 2:
-        envelopeSettings.punch.value = value;
-        break;
-      case 3:
-        envelopeSettings.decay.value = value;
-        break;
-    }
-  }
-
-  double getV(int field) {
-    switch (field) {
-      case 0:
-        return envelopeSettings.attack.value;
-      case 1:
-        return envelopeSettings.sustain.value;
-      case 2:
-        return envelopeSettings.punch.value;
-      case 3:
-        return envelopeSettings.decay.value;
-      default:
-        return 0.0;
-    }
+  void fromJson(String json) {
+    var jSettings = jsonDecode(json);
   }
 }
