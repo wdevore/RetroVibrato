@@ -8,7 +8,7 @@ class SettingsProvider extends InheritedWidget {
       : super(key: key, child: child);
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) => true;
+  bool updateShouldNotify(InheritedWidget oldWidget) => this != oldWidget;
 
   static SettingsProvider of(BuildContext context) {
     final SettingsProvider? provider =

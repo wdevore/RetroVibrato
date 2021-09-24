@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:retro_vibrato/model/settings_model.dart';
 import 'package:retro_vibrato/model/settings_provider.dart';
@@ -13,6 +15,8 @@ void main() {
 }
 
 class FSfxrApp extends StatelessWidget {
+  final SettingsModel settings = SettingsModel();
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -23,17 +27,17 @@ class FSfxrApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         backgroundColor: Colors.grey[500],
       ),
-      home: SettingsProvider(
-        child: FSfxrHomePage(
-          title: 'RetroVibrato',
-        ),
+      home: FSfxrHomePage(
+        title: 'RetroVibrato',
+        settings: settings,
       ),
     );
   }
 }
 
 class FSfxrHomePage extends StatefulWidget {
-  FSfxrHomePage({Key? key, required this.title}) : super(key: key);
+  FSfxrHomePage({Key? key, required this.title, required this.settings})
+      : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -45,12 +49,39 @@ class FSfxrHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
+  final SettingsModel settings;
 
   @override
-  _FSfxrHomePageState createState() => _FSfxrHomePageState();
+  _FSfxrHomePageState createState() => _FSfxrHomePageState(settings);
 }
 
 class _FSfxrHomePageState extends State<FSfxrHomePage> {
+  final SettingsModel settings;
+  final StreamController<String> notificationStream =
+      StreamController<String>();
+
+  _FSfxrHomePageState(
+    this.settings,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    notificationStream.stream.listen((event) {
+      streamSetState(event);
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    notificationStream.close();
+  }
+
+  void streamSetState(String action) {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,9 +121,6 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
   }
 
   Drawer _buildDrawer() {
-    final provider = SettingsProvider.of(context);
-    SettingsModel data = provider.settingsModel;
-
     return Drawer(
       // Add a ListView to the drawer. This ensures the user can scroll
       // through the options in the drawer if there isn't enough vertical
@@ -156,11 +184,12 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
               ),
             ),
             FileOpenAccess(
-              settings: data,
+              settings: settings,
               label: 'Load an *.Sfxr',
+              notificationStream: notificationStream,
             ),
-            SettingsSampleRateSubPanel(settings: data.appSettings),
-            SettingsAutoplayCheck(settings: data.appSettings),
+            SettingsSampleRateSubPanel(settings: settings.appSettings),
+            SettingsAutoplayCheck(settings: settings.appSettings),
             Container(
               decoration: BoxDecoration(color: Colors.lime.shade400),
               child: ListTile(
@@ -188,7 +217,7 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
     return SettingsProvider(
       child: Theme(
         data: Theme.of(context).copyWith(backgroundColor: Colors.black26),
-        child: SettingsExpansionPanels(),
+        child: SettingsExpansionPanels(settings),
       ),
     );
   }

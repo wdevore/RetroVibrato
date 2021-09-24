@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -15,23 +16,31 @@ class FileOpenAccess extends StatefulWidget {
     Key? key,
     required this.settings,
     required this.label,
+    required this.notificationStream,
   }) : super(key: key);
 
   final SettingsModel settings;
   final String label;
+  final StreamController<String> notificationStream;
 
   @override
   _FileOpenAccessState createState() => _FileOpenAccessState(
         settings,
         label,
+        notificationStream,
       );
 }
 
 class _FileOpenAccessState extends State<FileOpenAccess> {
   final SettingsModel settings;
   final String label;
+  final StreamController<String> notificationStream;
 
-  _FileOpenAccessState(this.settings, this.label);
+  _FileOpenAccessState(
+    this.settings,
+    this.label,
+    this.notificationStream,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +81,8 @@ class _FileOpenAccessState extends State<FileOpenAccess> {
       var file = File(fpr.files.first.path!);
       String json = (await (file.readAsString(encoding: ascii)));
       settings.fromJson(json);
+
+      notificationStream.add("LoadSfxr");
     }
   }
 }

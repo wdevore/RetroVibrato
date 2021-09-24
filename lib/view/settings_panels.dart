@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:retro_vibrato/model/settings_model.dart';
-import 'package:retro_vibrato/model/settings_provider.dart';
 import 'package:retro_vibrato/view/custom_slider_thumb_rect.dart';
 
 // ***************************************************************
 class SettingsExpansionPanels extends StatelessWidget {
   // This contains all the Panels. Each panels is stateful.
+  final SettingsModel settings;
+
+  SettingsExpansionPanels(this.settings);
+
   @override
   Widget build(BuildContext context) {
-    final provider = SettingsProvider.of(context);
-    SettingsModel data = provider.settingsModel;
-
     return SingleChildScrollView(
       child: Column(
         children: [
-          SettingsEnvelopeSubPanel(settings: data.envelopeSettings),
-          SettingsFrequencySubPanel(settings: data.frequencySettings),
-          SettingsVibratoSubPanel(settings: data.vibratoSettings),
-          SettingsArpeggiationSubPanel(settings: data.arpeggiationSettings),
-          SettingsDutyCycleSubPanel(settings: data.dutyCycleSettings),
-          SettingsRetriggerSubPanel(settings: data.retriggerSettings),
-          SettingsFlangerSubPanel(settings: data.flangerSettings),
-          SettingsLowPassFilterSubPanel(settings: data.lowPassFilterSettings),
-          SettingsHighPassFilterSubPanel(settings: data.highPassFilterSettings),
+          SettingsEnvelopeSubPanel(settings: settings.envelopeSettings),
+          SettingsFrequencySubPanel(settings: settings.frequencySettings),
+          SettingsVibratoSubPanel(settings: settings.vibratoSettings),
+          SettingsArpeggiationSubPanel(settings: settings.arpeggiationSettings),
+          SettingsDutyCycleSubPanel(settings: settings.dutyCycleSettings),
+          SettingsRetriggerSubPanel(settings: settings.retriggerSettings),
+          SettingsFlangerSubPanel(settings: settings.flangerSettings),
+          SettingsLowPassFilterSubPanel(
+              settings: settings.lowPassFilterSettings),
+          SettingsHighPassFilterSubPanel(
+              settings: settings.highPassFilterSettings),
         ],
       ),
     );
