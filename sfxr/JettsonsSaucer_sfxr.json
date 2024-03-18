@@ -23,10 +23,10 @@
     "HighPassFilterFrequencyRamp": -0.004624760519565958,
     "SoundVolume": 0.25,
     "WaveShape": 0,
-    "EnvelopeAttack": -0.053822166407502446,
+    "EnvelopeAttack": 0.4461778346,
     "EnvelopeSustain": 0.5481820182270688,
     "EnvelopePunch": 0.00852412519306904,
-    "EnvelopeDecay": -0.4096594627097274,
+    "EnvelopeDecay": 0.090340537,
     "SampleRate": 44100,
     "SampleSize": 8,
     "Noise": null
