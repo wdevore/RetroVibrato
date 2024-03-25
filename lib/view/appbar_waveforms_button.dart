@@ -60,7 +60,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
       child: Text(cap),
       style: TextButton.styleFrom(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        primary: Colors.white,
+        foregroundColor: Colors.white,
         backgroundColor: _activeColor(),
       ),
     );
@@ -164,7 +164,7 @@ class _AppBarWaveFormsButtonState extends State<AppBarWaveFormsButton> {
                 },
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  primary: Colors.orange,
+                  foregroundColor: Colors.orange,
                   backgroundColor: Colors.black45,
                 ),
               ),

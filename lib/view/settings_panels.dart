@@ -62,7 +62,7 @@ class _SettingsEnvelopeSubPanelsState extends State<SettingsEnvelopeSubPanel> {
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
@@ -113,7 +113,7 @@ class _SettingsFrequencySubPanelsState
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
@@ -162,7 +162,7 @@ class _SettingsVibratoSubPanelsState extends State<SettingsVibratoSubPanel> {
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
@@ -211,7 +211,7 @@ class _SettingsArpeggiationSubPanelsState
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
@@ -260,7 +260,7 @@ class _SettingsDutyCycleSubPanelsState
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
@@ -309,7 +309,7 @@ class _SettingsRetriggerSubPanelsState
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
@@ -355,7 +355,7 @@ class _SettingsFlangerSubPanelsState extends State<SettingsFlangerSubPanel> {
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
@@ -404,7 +404,7 @@ class _SettingsLowPassFilterSubPanelsState
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },
@@ -454,7 +454,7 @@ class _SettingsHighPassFilterSubPanelsState
       children: [
         ExpansionPanel(
           canTapOnHeader: true,
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return _buildTitle(settings.title);
           },

@@ -24,8 +24,8 @@ class FSfxrApp extends StatelessWidget {
       title: 'RetroVibrato', // App title
       theme: ThemeData(
         // This is the theme of your application.
-        primarySwatch: Colors.orange,
-        backgroundColor: Colors.grey[500],
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange)
+            .copyWith(background: Colors.grey[500]),
       ),
       home: FSfxrHomePage(
         title: 'RetroVibrato',
@@ -85,7 +85,7 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: _buildAppBar(),
       drawer: _buildDrawer(),
       body: _buildBody(),
@@ -216,7 +216,9 @@ class _FSfxrHomePageState extends State<FSfxrHomePage> {
   SettingsProvider _buildBody() {
     return SettingsProvider(
       child: Theme(
-        data: Theme.of(context).copyWith(backgroundColor: Colors.black26),
+        data: Theme.of(context).copyWith(
+          colorScheme: ColorScheme.light(background: Colors.black26),
+        ),
         child: SettingsExpansionPanels(settings),
       ),
     );
